@@ -197,7 +197,7 @@ scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27);
 console.log(scoreDolphins, scoreKoalas);
 checkWinner(scoreDolphins, scoreKoalas);
-*/
+
 
 
 ///////////////////////////////////////
@@ -223,10 +223,10 @@ friends[2] = 'Jay';
 console.log(friends);
 // friends = ['Bob', 'Alice']; // Not gonna work
 
-const firstName = 'Ondrej'
-const ondrej = [firstName, 'Demeter', 2022 - 1991, 'Printer', friends];
-console.log(ondrej);
-console.log(ondrej.length);
+const firstName = 'andy'
+const andy = [firstName, 'Demeter', 2022 - 1991, 'Printer', friends];
+console.log(andy);
+console.log(andy.length);
 
 // Exercise
 const calcAge = function (birthYear) {
@@ -242,3 +242,300 @@ console.log(age1, age2, age3);
 const ages =[calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 console.log(ages);
 
+
+
+///////////////////////////////////////
+// Basic Array Operations (Methods)
+
+const friends = ['Michael', 'Steven', 'Peter'];
+
+// Add elements
+const newLength = friends.push('Jay'); // Add last element
+console.log(friends);
+console.log(newLength);
+
+friends.unshift('John'); // Add first element
+console.log(friends);
+
+// Remove elements
+friends.pop(); // Remove last element
+const popped = friends.pop();
+console.log(popped);
+console.log(friends); 
+
+friends.shift(); // Remove first element
+console.log(friends);
+
+console.log(friends.indexOf('Steven'));
+console.log(friends.indexOf('Bob')); // Not in const friends so it is -1
+
+friends.push(23);
+console.log(friends.includes('Steven'));
+console.log(friends.includes('Bob'));
+console.log(friends.includes(23));
+
+if(friends.includes('Steven')) {
+  console.log('You have a friend called Steven.');
+}
+
+
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/*
+Steven is still building his tip calculator, using the same rules as before: Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%.
+
+1. Write a function 'calcTip' that takes any bill value as an input and returns the corresponding tip, calculated based on the rules above (you can check out the code from first tip calculator challenge if you need to). Use the function type you like the most. Test the function using a bill value of 100.
+2. And now let's use arrays! So create an array 'bills' containing the test data below.
+3. Create an array 'tips' containing the tip value for each bill, calculated from the function you created before.
+4. BONUS: Create an array 'total' containing the total values, so the bill + tip.
+
+TEST DATA: 125, 555 and 44
+
+HINT: Remember that an array needs a value in each position, and that value can actually be the returned value of a function! So you can just call a function as array values (so don't store the tip values in separate variables first, but right in the new array) 😉
+
+GOOD LUCK 😀
+
+
+// My solution
+// 1
+const arrayTotal = [];
+const arrayTips = []
+const calcTip = function(bill) {
+  if(bill >= 50 && bill <= 300) {
+    arrayTips.push(bill * 0.15);
+    arrayTotal.push(bill * 1.15);
+    return bill * 0.15;
+  } else if(bill < 50) {
+    return bill * 0.20;
+  } else {
+    return bill * 0.20;
+  }
+}
+
+const finalSum = calcTip (100);
+console.log(finalSum);
+
+// 2
+const arrayBill = [100, 125, 555, 44]
+console.log(calcTip(arrayBill[0]));
+console.log(calcTip(arrayBill[1]));
+
+// 3
+console.log("this is tips array", arrayTips);
+console.log(arrayTotal);
+
+Jonas Solution
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+// const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(bills, tips, totals);
+
+//Bora solution
+const bills = [10, 100, 1000];
+const tips = [];
+const totals = [];
+
+function boraCalc(bills) {
+  for(let i = 0; i<bills.length; i++) {
+    if(bills[i] >= 50 && bills[i] <=300) {
+       tips.push(bills[i] * 0.15)
+    } else {
+      tips.push(bills[i] * 0.2)
+    }
+  }
+
+}
+function totalcalc(bills, tips) {
+  for (let i = 0; i<bills.length; i++) {
+    totals.push(bills[i] + tips[i]);
+  }
+}
+
+boraCalc(bills)
+totalcalc(bills, tips)
+console.log("this is your bill ", bills)
+console.log("this is the tip ", tips)
+console.log("this is the total bill ", totals)
+
+
+
+///////////////////////////////////////
+// Introduction to Objects
+
+const andyArray = [
+  'andy',
+  'Demeter',
+  2037 - 1991,
+  'printer',
+  ['Michael', 'Peter', 'Steven']
+]; // Array
+
+const andy = {
+  firstName: 'andy',
+  lastName: 'Demeter',
+  age: 2022 - 1991,
+  job: 'Printer',
+  friends: ['Michael', 'Peter', 'Steven']
+}; // Object
+
+
+
+///////////////////////////////////////
+// Dot vs. Bracket Notation
+
+const andy = {
+  firstName: 'andy',
+  lastName: 'Demeter',
+  age: 2022 - 1991,
+  job: 'Printer',
+  friends: ['Michael', 'Peter', 'Steven']
+};
+console.log(andy);
+console.log(andy.lastName);
+console.log(andy['lastName']);
+
+const nameKey = 'Name';
+console.log(andy['first' + nameKey]);
+console.log(andy['last' + nameKey]);
+
+const interestedIn = prompt('What do you want to know about andy? Choose between firstName, lastName, age, job and friends');
+console.log(andy[interestedIn]);
+
+if(andy[interestedIn]) {
+  console.log(andy[interestedIn]);
+} else {
+  console.log('Wrong request! Choose between firstName, lastName, age, job and friends');
+}
+
+andy.location = 'England';
+andy['twitter'] = '@andy.demeter5'
+console.log(andy);
+
+// Challenge
+// "andy has 3 friends, and his best friend is called Michael"
+console.log(`${andy.firstName} has ${andy.friends.length} friends, and his best friend is called ${andy.friends[0]}.`)
+
+
+
+///////////////////////////////////////
+// Object Methods
+
+const andy = {
+  firstName: 'Andy',
+  lastName: 'Demeter',
+  birthYear: 1990,
+  job: 'teacher',
+  friends: ['Michael', 'Peter', 'Steven'],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  //     return 2037 - birthYear
+  // }
+
+  // calcAge: function () {
+  //   // console.log(this);
+  //   return 2037 - this.birthYear; 
+  // }
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${andy.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.`
+  }
+};
+
+console.log(andy.calcAge());
+
+console.log(andy.age); 
+console.log(andy.age);
+console.log(andy.age);
+
+// Challenge
+// "Jonas is a 46-year old teacher, and he has a driver's license"
+console.log(andy.getSummary());
+
+
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/*
+Let's go back to Mark and John comparing their BMIs! This time, let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
+
+1. For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith)
+2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also return it from the method.
+3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
+
+TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
+
+GOOD LUCK 😀
+
+
+const mark = {
+  fullName: 'Mark Miller',
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = mark.mass / mark.height ** 2;
+    return this.bmi;
+  },
+}
+
+const john = {
+  fullName: 'John Smith',
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.bmi = john.mass / john.height ** 2;
+    return this.bmi;
+  },
+}
+
+mark.calcBMI();
+john.calcBMI();
+
+console.log(mark.bmi);
+console.log(john.bmi);
+
+if(mark.bmi > john.bmi) {
+  console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi})`)
+} else if (john.bmi > mark.bmi) {
+  console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`)
+}
+
+
+
+///////////////////////////////////////
+// Iteration: The for Loop
+
+// console.log('Lifting weights repetition 1 🏋️‍♀️');
+// console.log('Lifting weights repetition 2 🏋️‍♀️');
+// console.log('Lifting weights repetition 3 🏋️‍♀️');
+// console.log('Lifting weights repetition 4 🏋️‍♀️');
+// console.log('Lifting weights repetition 5 🏋️‍♀️');
+// console.log('Lifting weights repetition 6 🏋️‍♀️');
+// console.log('Lifting weights repetition 7 🏋️‍♀️');
+// console.log('Lifting weights repetition 8 🏋️‍♀️');
+// console.log('Lifting weights repetition 9 🏋️‍♀️');
+// console.log('Lifting weights repetition 10 🏋️‍♀️');
+
+// for loop keeps running while condition is TRUE
+for(let rep = 1; rep <= 30; rep++) {
+  console.log(`Lifting weights repetition ${rep } 🏋️‍♀️`);
+}
+*/
+
+
+///////////////////////////////////////
+// Looping Arrays, Breaking and Continuing
